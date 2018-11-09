@@ -1,0 +1,62 @@
+.hero-wrapper {
+  margin-top: 20px;
+  padding: 8px;
+  text-align: center;
+  width: 100%;
+}
+.logo {
+  text-align: left;
+  width: 30%;
+  margin-left: 37%;
+  padding: 8px;
+}
+@media (max-width: 600px) {
+  .logo {
+    width: 70%;
+    margin-left: 20%;
+  }
+}
+.hero-wrapper .title {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.profile-wrapper {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  text-align: center;
+  font-size: 16px;
+}
+.profile-wrapper .title {
+  margin-bottom: 12px;
+}
+.profile-wrapper .profile {
+  max-width: 500px;
+  margin: auto;
+  text-align: left;
+}
+.products-wrapper {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 16px;
+}
+.product-wrapper {
+  padding: 20px 10px 50px;
+}
+.image-link-wrapper {
+  width: 40%;
+  margin-left: 30%;
+}
+.product-wrapper .title {
+  font-size: 24px;
+}
+.product-wrapper .title {
+  font-size: 24px;
+}
+.image-link-wrapper.aabox {
+  width: 30%;
+  margin-left: 35%;
+}
+ion-icon {
+    font-size: 36px;
+}
