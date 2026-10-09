@@ -72,6 +72,12 @@ export class AppHome {
             <div class="info">AA投稿＆保存サイトです。</div>
           </div>
         </div>
+        <div class="u-divider" />
+        <div class="contact-wrapper">
+          <ion-icon name="mail" color="danger" />
+          <div class="title u-mt8 u-fwe-bold u-mb12">コンタクト</div>
+          <a href="mailto:xiangxingtech@gmail.com">xiangxingtech@gmail.com</a>
+        </div>
       </ion-content>
     ];
   }
