@@ -1,0 +1,9 @@
+{
+  "name": "xiangxingtech",
+  "compatibility_date": "2026-10-06",
+  "assets": { "directory": "dist" },
+  "routes": [
+    { "pattern": "xiangxingtech.com", "custom_domain": true },
+    { "pattern": "www.xiangxingtech.com", "custom_domain": true }
+  ]
+}

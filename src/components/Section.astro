@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: 'person' | 'build' | 'mail';
+  title: string;
+}
+const { icon, title } = Astro.props;
+---
+<section class="mt-2 text-center text-base">
+  <Icon name={icon} />
+  <h2 class="mt-2 mb-3 font-bold">{title}</h2>
+  <slot />
+</section>

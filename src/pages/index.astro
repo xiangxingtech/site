@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+import AaSvg from '../components/AaSvg.astro';
+import Section from '../components/Section.astro';
+import aa from '../data/aa.json';
+
+const careers = [
+  '美容系動画アプリの企画、開発、運用',
+  '暗号通貨NEMのウォレット開発',
+  '電話の内線システムの開発',
+  'マルチプラットフォームのマッチングアプリ開発',
+];
+const products = [
+  { name: 'AAHub', info: 'MLTまとめzipのWebビューワーです', url: 'https://aahub.org', aa: aa.aahub, size: 'mx-[30%] w-[40%]' },
+  { name: 'AA箱', info: 'AA投稿＆保存サイトです。', url: 'https://aahub.org', aa: aa.aabox, size: 'mx-[35%] w-[30%]' },
+];
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>XiangXingTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="XiangXingTech" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/icon/icon.png" />
+  </head>
+  <body class="bg-white font-sans text-black antialiased">
+    <header class="sticky top-0 z-10 border-b border-black/20 bg-[#f8f8f8] pt-[env(safe-area-inset-top,0px)]">
+      <h1 class="h-11 text-center text-[17px] leading-[44px] font-semibold">XiangXingTech</h1>
+    </header>
+
+    <main class="p-4">
+      <div class="mt-5 mb-10 w-full p-2 text-center">
+        <div class="ml-[20%] w-[70%] p-2 text-left min-[601px]:ml-[37%] min-[601px]:w-[30%]">
+          <AaSvg lines={aa.logo} />
+        </div>
+        <p class="mt-2 font-bold">The power of the Web is infinite</p>
+      </div>
+
+      <hr class="border-divider" />
+      <Section icon="person" title="プロフィール">
+        <div class="mx-auto mb-8 max-w-[500px] text-left">
+          <p class="mb-3">会社員&フリーランスの両刀エンジニアです。</p>
+          <p class="mb-3">
+            個人的にAA（アスキーアート）が趣味です。AAを扱いやすくするためにサービス、ツールを開発・運用したりしてるエンジニアです。
+          </p>
+          <p class="mb-5">AA界隈を盛り上げたい。</p>
+          社会人的には、
+          <ul class="my-4 list-disc pl-10">
+            {careers.map((c) => <li>{c}</li>)}
+          </ul>
+          <p class="mb-3">等を経験しています。主に「作る」ことを多く経験しています。</p>
+          <p class="mb-3">開発スキル的にはフロントエンドの開発が多いですが必要に応じてサーバーもいけます。</p>
+          <p class="mb-1 font-bold">スキル（得意順）</p>
+          <p class="mb-3">Ionic / Ionic / Golang / GCP / Firebase / NEM / Vue / Nuxt / AWS</p>
+        </div>
+      </Section>
+
+      <hr class="border-divider" />
+      <Section icon="build" title="プロダクト">
+        {products.map((p) => (
+          <div class="px-2.5 pt-5 pb-12">
+            <a href={p.url} target="_blank" class={`block ${p.size}`}>
+              <AaSvg lines={p.aa} />
+            </a>
+            <p class="text-2xl">{p.name}</p>
+            <p>{p.info}</p>
+          </div>
+        ))}
+      </Section>
+
+      <hr class="border-divider" />
+      <Section icon="mail" title="コンタクト">
+        <a href="mailto:xiangxingtech@gmail.com" class="mb-12 inline-block text-link underline">xiangxingtech@gmail.com</a>
+      </Section>
+    </main>
+
+    <script>
+      // AAフォント読み込み後に各行の幅を canvas で測り、viewBox を合わせる(旧サイトと同じ測り方)
+      document.fonts.load("16px 'aahub'").then(() => {
+        const ctx = document.createElement('canvas').getContext('2d')!;
+        ctx.font = "16px 'aahub'";
+        for (const svg of document.querySelectorAll<SVGSVGElement>('svg.aa-svg')) {
+          const texts = svg.querySelectorAll('text');
+          const width = Math.max(...Array.from(texts, (t) => ctx.measureText(t.textContent ?? '').width));
+          svg.setAttribute('viewBox', `0 0 ${width} ${16 * texts.length}`);
+        }
+      });
+
+      // 旧サイトの service worker が残っているブラウザ向けに、解除用の sw.js へ更新させる
+      navigator.serviceWorker?.getRegistrations().then((regs) => regs.forEach((r) => r.update()));
+    </script>
+  </body>
+</html>

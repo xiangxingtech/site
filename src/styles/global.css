@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "aahub";
+  src: url("/fonts/aahub.woff2") format("woff2");
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+  --font-aa: "aahub";
+  --color-accent: #f04141;
+  --color-link: #3880ff;
+  --color-divider: #e6e6e6;
+}

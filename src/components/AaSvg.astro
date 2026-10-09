@@ -1,0 +1,16 @@
+---
+interface Props {
+  lines: string[];
+}
+const { lines } = Astro.props;
+const LINE_HEIGHT = 16;
+// フォント読み込み前の仮の幅(全角16px・半角8px)。読み込み後にスクリプトで実測し直す
+const estimate = Math.max(
+  ...lines.map((l) => [...l].reduce((w, c) => w + (c.charCodeAt(0) > 0xff && !/[｡-ﾟ]/.test(c) ? 16 : 8), 0)),
+);
+---
+<svg class="aa-svg block h-auto w-full" xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${estimate} ${LINE_HEIGHT * lines.length}`}>
+  <g class="font-aa text-[16px]">
+    {lines.map((line, i) => <text x="0" y={LINE_HEIGHT * (i + 1)} xml:space="preserve">{line}</text>)}
+  </g>
+</svg>
